@@ -34,6 +34,9 @@ define(function () {
     },
     removeAllItems: function () {
       return 'すべてのアイテムを削除';
+    },
+    selectAllText: function() {
+      return '全選択';
     }
   };
 });

@@ -48,6 +48,9 @@ define(function () {
     },
     search: function() {
       return 'Search';
+    },
+    selectAllText: function() {
+      return 'Select all';
     }
   };
 });

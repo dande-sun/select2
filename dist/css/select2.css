@@ -109,6 +109,13 @@
   .select2-search--dropdown.select2-search--hide {
     display: none; }
 
+.select2-selectall--dropdown label {
+  display: block;
+  padding: 4px;
+  cursor: pointer; }
+  .select2-selectall--dropdown label .select2-selectall__field {
+    margin-right: 4px; }
+
 .select2-close-mask {
   border: 0;
   margin: 0;

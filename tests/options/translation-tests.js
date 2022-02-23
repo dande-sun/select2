@@ -54,7 +54,8 @@ test(
         'searching',
         'removeAllItems',
         'removeItem',
-        'search'
+        'search',
+        'selectAllText'
       ]
     );
   }

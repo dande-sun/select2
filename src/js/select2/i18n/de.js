@@ -36,6 +36,9 @@ define(function () {
     },
     removeAllItems: function () {
       return 'Entferne alle Elemente';
+    },
+    selectAllText: function() {
+      return 'Alles markieren';
     }
   };
 });

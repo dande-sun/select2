@@ -31,6 +31,7 @@ define([
   './dropdown/attachBody',
   './dropdown/minimumResultsForSearch',
   './dropdown/selectOnClose',
+  './dropdown/selectAll',
   './dropdown/closeOnSelect',
   './dropdown/dropdownCss',
   './dropdown/tagsSearchHighlight',
@@ -49,7 +50,8 @@ define([
              MinimumInputLength, MaximumInputLength, MaximumSelectionLength,
 
              Dropdown, DropdownSearch, HidePlaceholder, InfiniteScroll,
-             AttachBody, MinimumResultsForSearch, SelectOnClose, CloseOnSelect,
+             AttachBody, MinimumResultsForSearch, SelectOnClose,
+             SelectAll, CloseOnSelect,
              DropdownCSS, TagsSearchHighlight,
 
              EnglishTranslation) {
@@ -137,6 +139,19 @@ define([
     if (options.dropdownAdapter == null) {
       if (options.multiple) {
         options.dropdownAdapter = Dropdown;
+
+        /**
+         * Name: Select All
+         * Description: When the select is multiple and
+         *  selectAllOption is true, display the `select all`
+         * Author: Dande
+         */
+        if (options.selectAllOption) {
+          options.dropdownAdapter = Utils.Decorate(
+            options.dropdownAdapter,
+            SelectAll
+          );
+        }
       } else {
         var SearchableDropdown = Utils.Decorate(Dropdown, DropdownSearch);
 
@@ -307,6 +322,8 @@ define([
       maximumInputLength: 0,
       maximumSelectionLength: 0,
       minimumResultsForSearch: 0,
+      selectAllOption: true, // `select all` button by default.
+      selectAllText: '', // Select all text
       selectOnClose: false,
       scrollAfterSelect: false,
       sorter: function (data) {
