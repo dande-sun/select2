@@ -1,5 +1,5 @@
 /*!
- * Select2 4.1.0-rc.0
+ * Select2 4.1.0-rc.0-selectall-0.2
  * https://select2.github.io
  *
  * Released under the MIT license
@@ -4816,8 +4816,8 @@ S2.define('select2/dropdown/selectAll',[
       this.options.get('translations').get('selectAllText')();
 
     var $selectAll = $(
-      '<div class="select2-selectall select2-selectall--dropdown">' +
-        '<label>' +
+      '<div class="select2-topbar">' +
+        '<label class="select2-selectall">' +
           '<input class="select2-selectall__field" type="checkbox"' +
           ' role="selectallbox"/>' +
           selectAllLabel +
@@ -4869,29 +4869,13 @@ S2.define('select2/dropdown/selectAll',[
     });
   };
   SelectAll.prototype._selectedCheck = function(_, data){
-
-    var selected = Array.prototype.map.call(
-      this.$element[0].querySelectorAll(':checked'),
-      function (selectedElement) {
-        return selectedElement;
-      }
-    );
-    console.log(selected);
-    /*
-    var selectedIds = selected.map(function (s) {
-      return s.id.toString();
-    });
-    console.log(selectedIds);
-    */
-    // if ((item.element != null && item.element.selected) ||
-    //  (item.element == null && selectedIds.indexOf(id) > -1)) {
     for(var i in data) {
       if(data[i].element != null && !data[i].element.disabled){
         if(data[i].hasOwnProperty('children')) {
           if(!this._selectedCheck(data[i].children)) {
             return false;
           }
-        } else if(!data[i].selected) {
+        } else if(!$(data[i].element).is(':checked')) {
           return false;
         }
       }

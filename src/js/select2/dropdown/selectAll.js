@@ -20,8 +20,8 @@ define([
       this.options.get('translations').get('selectAllText')();
 
     var $selectAll = $(
-      '<div class="select2-selectall select2-selectall--dropdown">' +
-        '<label>' +
+      '<div class="select2-topbar">' +
+        '<label class="select2-selectall">' +
           '<input class="select2-selectall__field" type="checkbox"' +
           ' role="selectallbox"/>' +
           selectAllLabel +
