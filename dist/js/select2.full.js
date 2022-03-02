@@ -1,5 +1,5 @@
 /*!
- * Select2 4.1.0-rc.0-selectall-0.2
+ * Select2 4.1.0-rc.0-selectall-0.3
  * https://select2.github.io
  *
  * Released under the MIT license
@@ -4887,24 +4887,30 @@ S2.define('select2/dropdown/selectAll',[
     var result = this.$dropdown.find('#' +
       this.$selectAll.attr('aria-controls') +
       ' .select2-results__option--selectable');
+    var data = self.$element.val();
     result.each(function(i){
-      var data = Utils.GetData(this, 'data');
-      self.trigger('select', {
-        data: data
-      });
+      var id = Utils.GetData(this, 'data').id;
+      var index = data.indexOf(id);
+      if(index < 0) {
+        data.push(id);
+      }
     });
+    self.$element.val(data).trigger('change');
   };
   SelectAll.prototype._unselectAll = function(_, evt){
     var self = this;
     var result = this.$dropdown.find('#' +
       this.$selectAll.attr('aria-controls') +
       ' .select2-results__option--selected');
+    var data = self.$element.val();
     result.each(function(i){
-      var data = Utils.GetData(this, 'data');
-      self.trigger('unselect', {
-        data: data
-      });
+      var id = Utils.GetData(this, 'data').id;
+      var index = data.indexOf(id);
+      if(index > 0) {
+        data.splice(index,1);
+      }
     });
+    self.$element.val(data).trigger('change');
   };
 
   return SelectAll;

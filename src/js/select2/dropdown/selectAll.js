@@ -91,24 +91,30 @@ define([
     var result = this.$dropdown.find('#' +
       this.$selectAll.attr('aria-controls') +
       ' .select2-results__option--selectable');
+    var data = self.$element.val();
     result.each(function(i){
-      var data = Utils.GetData(this, 'data');
-      self.trigger('select', {
-        data: data
-      });
+      var id = Utils.GetData(this, 'data').id;
+      var index = data.indexOf(id);
+      if(index < 0) {
+        data.push(id);
+      }
     });
+    self.$element.val(data).trigger('change');
   };
   SelectAll.prototype._unselectAll = function(_, evt){
     var self = this;
     var result = this.$dropdown.find('#' +
       this.$selectAll.attr('aria-controls') +
       ' .select2-results__option--selected');
+    var data = self.$element.val();
     result.each(function(i){
-      var data = Utils.GetData(this, 'data');
-      self.trigger('unselect', {
-        data: data
-      });
+      var id = Utils.GetData(this, 'data').id;
+      var index = data.indexOf(id);
+      if(index > 0) {
+        data.splice(index,1);
+      }
     });
+    self.$element.val(data).trigger('change');
   };
 
   return SelectAll;
