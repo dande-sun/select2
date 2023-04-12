@@ -1,6 +1,6 @@
 {
   "name": "select2-selectall",
-  "version": "4.1.0-rc.0-selectall-0.5",
+  "version": "4.1.0-rc.0-0.6",
   "description": "This is a copy from select2, just extend a function, the `select all`.",
   "homepage": "https://select2.org",
   "author": "Kevin Brown (https://github.com/kevin-brown)",

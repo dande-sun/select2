@@ -1,5 +1,5 @@
 /*!
- * Select2 4.1.0-rc.0-selectall-0.5
+ * Select2 4.1.0-rc.0-0.6
  * https://select2.github.io
  *
  * Released under the MIT license
@@ -1164,7 +1164,7 @@ S2.define('select2/results',[
       // When the dropdown is closed, aria-expended="false"
       self.$results.attr('aria-expanded', 'false');
       self.$results.attr('aria-hidden', 'true');
-      self.$results.removeAttr('aria-activedescendant');
+      self.$results[0].removeAttribute('aria-activedescendant');
     });
 
     container.on('results:toggle', function () {
@@ -1497,8 +1497,8 @@ S2.define('select2/selection/base',[
     container.on('close', function () {
       // When the dropdown is closed, aria-expanded="false"
       self.$selection.attr('aria-expanded', 'false');
-      self.$selection.removeAttr('aria-activedescendant');
-      self.$selection.removeAttr('aria-owns');
+      self.$selection[0].removeAttribute('aria-activedescendant');
+      self.$selection[0].removeAttribute('aria-owns');
 
       self.$selection.trigger('focus');
 
@@ -1666,7 +1666,7 @@ S2.define('select2/selection/single',[
   SingleSelection.prototype.clear = function () {
     var $rendered = this.$selection.find('.select2-selection__rendered');
     $rendered.empty();
-    $rendered.removeAttr('title'); // clear tooltip on empty
+    $rendered[0].removeAttribute('title'); // clear tooltip on empty
   };
 
   SingleSelection.prototype.display = function (data, container) {
@@ -1698,7 +1698,7 @@ S2.define('select2/selection/single',[
     if (title) {
       $rendered.attr('title', title);
     } else {
-      $rendered.removeAttr('title');
+      $rendered[0].removeAttribute('title');
     }
   };
 
@@ -2097,8 +2097,8 @@ S2.define('select2/selection/search',[
     container.on('close', function () {
       self.$search.val('');
       self.resizeSearch();
-      self.$search.removeAttr('aria-controls');
-      self.$search.removeAttr('aria-activedescendant');
+      self.$search[0].removeAttribute('aria-controls');
+      self.$search[0].removeAttribute('aria-activedescendant');
       self.$search.trigger('focus');
     });
 
@@ -2120,7 +2120,7 @@ S2.define('select2/selection/search',[
       if (params.data._resultId) {
         self.$search.attr('aria-activedescendant', params.data._resultId);
       } else {
-        self.$search.removeAttr('aria-activedescendant');
+        self.$search[0].removeAttribute('aria-activedescendant');
       }
     });
 
@@ -2303,7 +2303,11 @@ S2.define('select2/selection/selectionCss',[
       Utils.copyNonInternalCssClasses($selection[0], this.$element[0]);
     }
 
-    $selection.addClass(selectionCssClass);
+    selectionCssClass.trim().split(' ').forEach(function(cssClass) {
+      if(cssClass.length > 0) {
+        $selection[0].classList.add(cssClass);
+      }
+    });
 
     return $selection;
   };
@@ -4251,8 +4255,8 @@ S2.define('select2/dropdown/search',[
 
     container.on('close', function () {
       self.$search.attr('tabindex', -1);
-      self.$search.removeAttr('aria-controls');
-      self.$search.removeAttr('aria-activedescendant');
+      self.$search[0].removeAttribute('aria-controls');
+      self.$search[0].removeAttribute('aria-activedescendant');
 
       self.$search.val('');
       self.$search.trigger('blur');
@@ -4280,7 +4284,7 @@ S2.define('select2/dropdown/search',[
       if (params.data._resultId) {
         self.$search.attr('aria-activedescendant', params.data._resultId);
       } else {
-        self.$search.removeAttr('aria-activedescendant');
+        self.$search[0].removeAttribute('aria-activedescendant');
       }
     });
   };
@@ -4966,7 +4970,11 @@ S2.define('select2/dropdown/dropdownCss',[
       Utils.copyNonInternalCssClasses($dropdown[0], this.$element[0]);
     }
 
-    $dropdown.addClass(dropdownCssClass);
+    dropdownCssClass.trim().split(' ').forEach(function(cssClass) {
+      if(cssClass.length > 0) {
+        $dropdown[0].classList.add(cssClass);
+      }
+    });
 
     return $dropdown;
   };
