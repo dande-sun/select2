@@ -1,5 +1,5 @@
 /*!
- * Select2 4.1.0-rc.0-selectall-0.3
+ * Select2 4.1.0-rc.0-selectall-0.4
  * https://select2.github.io
  *
  * Released under the MIT license
@@ -772,12 +772,7 @@ S2.define('select2/utils',[
     }
 
     // If element has id, use it.
-    if (element.id) {
-      select2Id = 'select2-data-' + element.id;
-    } else {
-      select2Id = 'select2-data-' + (++id).toString() +
-        '-' + Utils.generateChars(4);
-    }
+    select2Id = 'select2-data-' + (++id).toString() + '-' + Utils.generateChars(4);
 
     element.setAttribute('data-select2-id', select2Id);
 

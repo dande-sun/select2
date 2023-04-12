@@ -272,12 +272,7 @@ define([
     }
 
     // If element has id, use it.
-    if (element.id) {
-      select2Id = 'select2-data-' + element.id;
-    } else {
-      select2Id = 'select2-data-' + (++id).toString() +
-        '-' + Utils.generateChars(4);
-    }
+    select2Id = 'select2-data-' + (++id).toString() + '-' + Utils.generateChars(4);
 
     element.setAttribute('data-select2-id', select2Id);
 
