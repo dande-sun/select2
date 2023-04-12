@@ -5,6 +5,8 @@ Select2
 This is a fork from [select2][https://github.com/select2/select2], just extend a function, the select all.
 Here is [GITHUB][https://github.com/select2/select2]
 Here is [documentation][https://select2.org/]
+To get started, check out examples and documentation at
+https://select2.org/
 
 Documentation of the select all
 ---------

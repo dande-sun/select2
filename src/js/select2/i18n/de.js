@@ -39,6 +39,12 @@ define(function () {
     },
     selectAllText: function() {
       return 'Alles markieren';
+    },
+    removeItem: function () {
+      return 'Element entfernen';
+    },
+    search: function() {
+      return 'Suchen';
     }
   };
 });
